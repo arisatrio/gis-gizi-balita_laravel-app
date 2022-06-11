@@ -1,22 +1,22 @@
 @extends('admin.layout.app')
-@section('title', 'Data Posyandu')
+@section('title', 'Data Balita')
 
 @section('main-content')
 <x-page-layout>
-    @slot('pageTitle') Data Posyandu @endslot
+    @slot('pageTitle') Data Balita @endslot
     @slot('breadcrumb')
         <li class="breadcrumb-item">Master Data</li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.data-posyandu.index') }}">Data Posyandu</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.data-balita.index') }}">Data Balita</a></li>
     @endslot
 
-    @slot('title') Data Posyandu @endslot
+    @slot('title') Data Balita @endslot
 
     @slot('body')
         <x-messages />
 
         <div class="row mb-2">
             <div class="col">
-                <a href="{{ route('admin.data-posyandu.create') }}" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Tambah Data Posyandu</a>
+                <a href="{{ route('admin.data-balita.create') }}" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Tambah Data Balita</a>
             </div>
         </div>
 
@@ -24,16 +24,39 @@
             <div class="col">
                 <x-datatables>
                     @slot('columns')
-                        <th>Nama Posyandu</th>
-                        <th>Ketua Posyandu</th>
-                        <th>Alamat</th>
-                        <th>Total Balita</th>
-                        <th style="width: 5%;">Status</th>
+                        <th>KIA</th>
+                        <th>Nama</th>
+                        <th style="width: 5%;">JK</th>
+                        <th>Umur</th>
+                        <th>Nama Ibu</th>
+                        <th>Posyandu</th>
+                        <th>Terakhir Cek</th>
                     @endslot
                 </x-datatables>
             </div>
         </div>
         
+
+        <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">Riwayat</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <p>One fine body…</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+            
+            </div>
+            
+            </div>
     @endslot
 </x-page-layout>
 @endsection
@@ -51,16 +74,18 @@
         ajax: "",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+            {data: 'id_kia', name: 'id_kia'},
             {data: 'name', name: 'name'},
-            {data: 'name_pic', name: 'name_pic'},
-            {data: 'address', name: 'address'},
-            {data: 'balitaCount', name: 'balitaCount'},
-            {data: 'status', name: 'status'},
+            {data: 'gender', name: 'gender'},
+            {data: 'age', name: 'age'},
+            {data: 'mother_name', name: 'mother_name'},
+            {data: 'posyandu', name: 'posyandu'},
+            {data: 'last_check', name: 'last_check'},
             {data: 'action', name: 'action', orderable: false, seacrhable: false}
         ],
         columnDefs: [
             {
-                "targets": 4,
+                "targets": 3,
                 "className": "text-center",
             },
             {
@@ -68,14 +93,14 @@
                 "className": "text-center",
             },
             {
-                "targets": 5,
+                "targets": 8,
                 "className": "text-center",
             },
         ]
     });
 
-    function delete_posyandu(e) {
-        var url = '{{ route("admin.data-posyandu.destroy", ":id") }}';
+    function delete_balita(e) {
+        var url = '{{ route("admin.data-balita.destroy", ":id") }}';
         url = url.replace(':id', e);
         $.ajaxSetup({
             headers: {

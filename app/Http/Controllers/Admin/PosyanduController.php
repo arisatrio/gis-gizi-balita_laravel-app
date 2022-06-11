@@ -21,12 +21,12 @@ class PosyanduController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()) {
-            $data = Posyandu::with('rukunWarga')->get();
+            $data = Posyandu::with(['rukunWarga', 'balita'])->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
-                ->addColumn('rw', function ($row) {
-                    return '<span class="badge badge-primary">'.$row->rukunWarga->name.'</span>';
+                ->addColumn('balitaCount', function ($row) {
+                    return '<span class="badge badge-primary">'.$row->balita->count().'</span>';
                 })
                 ->addColumn('status', function ($row) {
                     if($row->status === 'active') {
@@ -40,7 +40,7 @@ class PosyanduController extends Controller
                     $delete = '<a href="javascript:void(0)" onclick="delete_posyandu('.$row->id.')" class="btn btn-default btn-sm mx-2">HAPUS</a>';
                     return $edit.$delete;
                 })
-                ->rawColumns(['rw', 'status', 'action'])
+                ->rawColumns(['balitaCount', 'status', 'action'])
                 ->make(true);
         }
         return view('admin.posyandu.index');
@@ -53,7 +53,7 @@ class PosyanduController extends Controller
      */
     public function create()
     {
-        $rukun_warga = RukunWarga::orderByRw()->get();
+        $rukun_warga = RukunWarga::orderByRw()->whereDoesntHave('posyandu')->get();
         $lokasi = Lokasi::first();
 
         return view('admin.posyandu.create', compact('rukun_warga', 'lokasi'));

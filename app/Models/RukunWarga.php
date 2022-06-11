@@ -29,6 +29,6 @@ class RukunWarga extends Model
 
     public function posyandu()
     {
-        return $this->hasOne(Posyandu::class);
+        return $this->hasOne(Posyandu::class, 'tb_rukun_warga_id');
     }
 }

@@ -25,8 +25,18 @@ class Posyandu extends Model
         return $query->where('status', 'active');
     }
 
+    public function getNameAttribute($value)
+    {
+        return 'Posyandu '.$value.' ('.$this->rukunWarga->name.')';
+    }
+
     public function rukunWarga()
     {
         return $this->belongsTo(RukunWarga::class, 'tb_rukun_warga_id');
+    }
+
+    public function balita()
+    {
+        return $this->hasMany(Balita::class, 'tb_posyandu_id');
     }
 }

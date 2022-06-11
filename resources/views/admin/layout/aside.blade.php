@@ -22,43 +22,71 @@
           </form>
       </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-header text-uppercase">Dashboard</li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-map"></i>
-                    <p>Dashboard Maps</p>
-                </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-chart-area"></i>
-                  <p>Dashboard Analytics</p>
-              </a>
-          </li>
-              <li class="nav-header text-uppercase">Master Data</li>
-              <li class="nav-item">
-                  <a href="{{ route('admin.data-posyandu.index') }}" class="nav-link {{  Route::is('admin.data-posyandu.*') ? 'active' : ''  }}">
-                    <i class="nav-icon fas fa-database"></i>
-                    <p>Data Posyandu</p>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="{{ route('admin.data-rw.index') }}" class="nav-link {{  Route::is('admin.data-rw.*') ? 'active' : ''  }}">
-                    <i class="nav-icon fas fa-database"></i>
-                    <p>Data RW</p>
-                  </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.data-lokasi.index') }}" class="nav-link {{  Route::is('admin.data-lokasi.*') ? 'active' : ''  }}">
-                  <i class="nav-icon fas fa-database"></i>
-                  <p>Data Lokasi</p>
-                </a>
-            </li>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          </ul>
-      </nav>
-  </div>
+                <li class="nav-header text-uppercase">Dashboard</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-map"></i>
+                        <p>Dashboard Maps</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-area"></i>
+                        <p>Dashboard Analytics</p>
+                    </a>
+                </li>
+
+                <li class="nav-header text-uppercase">Klasifikasi</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>Normalisasi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-brain"></i>
+                        <p>Data Training</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Data Testing</p>
+                    </a>
+                </li>
+
+                <li class="nav-header text-uppercase">Master Data</li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.data-balita.index') }}" class="nav-link {{  Route::is('admin.data-balita.*') ? 'active' : ''  }}">
+                        <i class="nav-icon fas fa-baby"></i>
+                        <p>Data Balita</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.data-posyandu.index') }}" class="nav-link {{  Route::is('admin.data-posyandu.*') ? 'active' : ''  }}">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>Data Posyandu</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.data-rw.index') }}" class="nav-link {{  Route::is('admin.data-rw.*') ? 'active' : ''  }}">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>Data RW</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.data-lokasi.index') }}" class="nav-link {{  Route::is('admin.data-lokasi.*') ? 'active' : ''  }}">
+                    <i class="nav-icon fas fa-database"></i>
+                    <p>Data Lokasi</p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
 </aside>

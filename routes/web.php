@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Admin\DashboardMapController;
 use App\Http\Controllers\Admin\DashboardAnalyticsController;
+use App\Http\Controllers\Admin\BalitaController;
 use App\Http\Controllers\Admin\PosyanduController;
 use App\Http\Controllers\Admin\RukunWargaController;
 use App\Http\Controllers\Admin\LokasiController;
@@ -31,12 +32,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
 
     Route::resources([
+        'data-balita'       => BalitaController::class,
         'data-posyandu'     => PosyanduController::class,
         'data-rw'           => RukunWargaController::class,
-        'data-lokasi'            => LokasiController::class,
-    ], [
-        'except' => 'show'
-    ]);
+        'data-lokasi'       => LokasiController::class,
+    ] 
+        // [ 'except' => 'show' ]
+    );
     Route::get('download-template-lokasi', DownloadTemplateLokasiController::class)->name('download-geojson');
 });
 

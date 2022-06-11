@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Lokasi;
+use App\Models\Posyandu;
 
 class HomeController extends Controller
 {
@@ -17,7 +18,8 @@ class HomeController extends Controller
     public function __invoke()
     {
         $lokasi = Lokasi::first();
+        $posyandu = Posyandu::with('rukunWarga')->active()->get();
 
-        return view('welcome', compact('lokasi'));
+        return view('welcome', compact('lokasi', 'posyandu'));
     }
 }
