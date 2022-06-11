@@ -28,7 +28,7 @@ class BalitaStoreRequest extends FormRequest
             'tb_posyandu_id'    => 'required|exists:tb_posyandus,id',
             'mother_name'       => 'required|string',
             'name'              => 'required|string',
-            'birth'             => 'required|date_format:Y-m-d|before:today',
+            'birth'             => 'required|date_format:Y-m-d|before_or_equal:today',
             'gender'            => 'required|in:L,P',
             'address'           => 'required|string',
         ];

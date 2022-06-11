@@ -20,6 +20,7 @@ class Balita extends Model
         'gender',
         'address',
     ];
+    protected $dates = ['birth'];
     protected $appends = ['age'];
 
     public function getAgeAttribute()
@@ -27,8 +28,23 @@ class Balita extends Model
         return Carbon::parse($this->birth)->diffInMonths(Carbon::now()).' Bulan';
     }
 
+    public function getFullAgeAttribute()
+    {
+        return Carbon::parse($this->birth)->diff(Carbon::now())->format('%y tahun %m bulan and %d hari');;
+    }
+
     public function posyandu()
     {
         return $this->belongsTo(Posyandu::class, 'tb_posyandu_id');
+    }
+
+    public function checkUp()
+    {
+        return $this->hasMany(BalitaCheck::class, 'tb_balita_id')->orderByDesc('check_date');
+    }
+
+    public function statusGizi()
+    {
+        return $this->hasOne(BalitaCheck::class, 'tb_balita_id')->whereNotNull('status')->latest();
     }
 }

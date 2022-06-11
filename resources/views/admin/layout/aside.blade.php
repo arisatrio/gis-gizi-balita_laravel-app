@@ -60,7 +60,13 @@
                     </a>
                 </li>
 
-                <li class="nav-header text-uppercase">Master Data</li>
+                <li class="nav-header text-uppercase">Master</li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.data-balita.index') }}" class="nav-link {{  Route::is('admin.data-balita.*') ? 'active' : ''  }}">
+                        <i class="nav-icon fas fa-baby"></i>
+                        <p>Data Check Up</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.data-balita.index') }}" class="nav-link {{  Route::is('admin.data-balita.*') ? 'active' : ''  }}">
                         <i class="nav-icon fas fa-baby"></i>

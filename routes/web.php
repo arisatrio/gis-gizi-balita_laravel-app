@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Admin\DashboardMapController;
 use App\Http\Controllers\Admin\DashboardAnalyticsController;
+
+use App\Http\Controllers\Admin\BalitaCheckUpController;
 use App\Http\Controllers\Admin\BalitaController;
 use App\Http\Controllers\Admin\PosyanduController;
 use App\Http\Controllers\Admin\RukunWargaController;
@@ -31,14 +33,15 @@ Route::get('/', HomeController::class);
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
 
 
+    Route::get('/data-balita/{id}/check-up', [BalitaCheckUpController::class, 'create'])->name('balita-checkup.create');
+    Route::post('/data-balita/check-up', [BalitaCheckUpController::class, 'store'])->name('balita-checkup.store');
+    Route::get('/data-balita/{id}/riwayat-check-up', [BalitaCheckUpController::class, 'show'])->name('balita-checkup.show');
     Route::resources([
         'data-balita'       => BalitaController::class,
         'data-posyandu'     => PosyanduController::class,
         'data-rw'           => RukunWargaController::class,
         'data-lokasi'       => LokasiController::class,
-    ] 
-        // [ 'except' => 'show' ]
-    );
+    ], [ 'except' => 'show' ]);
     Route::get('download-template-lokasi', DownloadTemplateLokasiController::class)->name('download-geojson');
 });
 

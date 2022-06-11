@@ -35,8 +35,8 @@ class BalitaController extends Controller
                     return '-';
                 })
                 ->addColumn('action', function ($row) {
-                    $checkIn = '<a href="#" class="btn btn-outline-success btn-block"><i class="fas fa-plus"></i> Check Up</a>';
-                    $riwayat = '<button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-outline-primary btn-block mb-2"><i class="fas fa-calendar-check"></i> Riwayat</button>';
+                    $checkIn = '<a href="'.route('admin.balita-checkup.create', $row->id).'" class="btn btn-outline-success btn-block"><i class="fas fa-plus"></i> Check Up</a>';
+                    $riwayat = '<button type="button" id="edit" data-id="'.$row->id.'" class="btn btn-outline-primary btn-block mb-2"><i class="fas fa-calendar-check"></i> Riwayat</button>';
                     $edit = '<a href="'.route('admin.data-balita.edit', $row->id).'" class="btn btn-default btn-sm">EDIT</a>'; 
                     $delete = '<a href="javascript:void(0)" onclick="delete_balita('.$row->id.')" class="btn btn-default btn-sm mx-2">HAPUS</a>';
                     return $checkIn.$riwayat.$edit.$delete;
