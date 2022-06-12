@@ -58,12 +58,14 @@
                     <tr>
                         <th class="bg-light" style="width: 50%;">Status Gizi</th>
                         <td>
-                            @if($balita->statusGizi->status === 1)
-                            <span class="badge badge-success">Gizi Baik</span></td>
-                            @elseif($balita->statusGizi->status === 0)
-                            <span class="badge badge-danger">Gizi Buruk</span></td>
+                            @if($balita->statusGizi->status != NULL)
+                                @if($balita->statusGizi->status === 1)
+                                    <span class="badge badge-success">Gizi Baik</span></td>
+                                @else
+                                    <span class="badge badge-danger">Gizi Buruk</span></td>
+                                @endif
                             @else 
-                            <span class="badge badge-dark">Belum diklasifikasi</span></td>
+                                <span class="badge badge-dark">Belum diklasifikasi</span></td>
                             @endif
                     </tr>
                 </table>
@@ -83,21 +85,23 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-6 col-12">
                                 <div class="info-box">
-                                    @if($item->status === 1)
-                                    <span class="info-box-icon bg-success"><i class="far fa-thumbs-up"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="h1 info-box-number text-uppercase">Gizi Baik</span>
-                                    </div>
-                                    @elseif($item->status === 0)
-                                    <span class="info-box-icon bg-danger"><i class="far fa-flag"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="h1 info-box-number text-uppercase">Gizi Buruk</span>
-                                    </div>
+                                    @if($item->status != NULL)
+                                        @if($item->status === 1)
+                                            <span class="info-box-icon bg-success"><i class="far fa-thumbs-up"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="h1 info-box-number text-uppercase">Gizi Baik</span>
+                                            </div>
+                                        @else
+                                            <span class="info-box-icon bg-danger"><i class="far fa-flag"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="h1 info-box-number text-uppercase">Gizi Buruk</span>
+                                            </div>
+                                        @endif
                                     @else
-                                    <span class="info-box-icon bg-warning"><i class="far fa-star"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="h1 info-box-number text-uppercase">Belum diklasifikasi</span>
-                                    </div>
+                                        <span class="info-box-icon bg-warning"><i class="far fa-star"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="h1 info-box-number text-uppercase">Belum diklasifikasi</span>
+                                        </div>
                                     @endif
                                 
                                 </div>

@@ -20,7 +20,7 @@ class BalitaCheckUpController extends Controller
 
     public function store(CheckupStoreRequest $request)
     {
-        BalitaCheck::create($request->validated());
+        $check = BalitaCheck::create($request->validated());
 
         return redirect()->route('admin.data-balita.index')->with('success', 'Data Check Up berhasil ditambahkan');;
     }
@@ -34,9 +34,5 @@ class BalitaCheckUpController extends Controller
         $html = $view->render();
 
         return ['success' => true, 'html' => $html];
-
-        // return response()->json([
-        //     'data'   => $balita,
-        // ]);
     }
 }

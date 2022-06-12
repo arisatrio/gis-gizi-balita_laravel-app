@@ -72,20 +72,39 @@
 
             posyandu.forEach(function (pos) {
                 var onecircle =  L.circle([pos.latitude, pos.longitude], {
-                    color: "red",
-                    fillColor: "red",
+                    // color: "green",
+                    // fillColor: "green",
                     fillOpacity: 0.5,
-                    radius: 75
+                    radius: 100
                 }).addTo(map);
-                onecircle.bindPopup('<b>Posyandu '+pos.name+' </b> '+'('+pos.rukun_warga.name+')<br>'+'<small>'+pos.address+'</small>');
-                onecircle.bindTooltip("40%", {
+                var posyandu        = '<b>'+pos.name+'</b><br>'+'<small>'+pos.address+'</small><br><hr>';
+                var totalBalita     = '<b>Total Balita: '+pos.totalBalita+'</b><br>';
+                var totalGiziBaik   = '<b>Gizi Baik: <span style="color:green">'+pos.total_gizi_baik_count+'</span></b><br>';
+                var totalGiziBuruk  = '<b>Gizi Buruk: <span style="color:red">'+pos.total_gizi_buruk_count+'</span></b><br>';
+                var persentase      = getPercentGiziBaik(pos.balita_count, pos.total_gizi_baik_count);
+                var persen          = '<b>Persentase: '+persentase+'%</b>';
+                onecircle.setStyle({ color: getColor(persentase) });
+                
+                onecircle.bindPopup(posyandu+totalBalita+totalGiziBaik+totalGiziBuruk+persen);
+                onecircle.bindTooltip(persentase+' %', {
                     permanent: true, 
                     direction:"center",
                     className: 'text'
                 }).openTooltip();
             });
 
-            console.log(posyandu);
+            function getColor(value) {
+                hue = value;
+                return ["hsl(", hue, ",100%,50%)"].join("");
+            }
+
+            function getPercentGiziBaik(totalBalita, totalGiziBaik){
+                if(totalBalita != 0 && totalGiziBaik != 0) {
+                    return (totalBalita / totalGiziBaik) * 100;
+                } else {
+                    return 0;
+                }
+            }
 
         </script>
     </body>

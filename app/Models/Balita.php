@@ -45,6 +45,11 @@ class Balita extends Model
 
     public function statusGizi()
     {
-        return $this->hasOne(BalitaCheck::class, 'tb_balita_id')->whereNotNull('status')->latest();
+        return $this->hasOne(BalitaCheck::class, 'tb_balita_id')->latest();
+    }
+
+    public function statusGiziBalita()
+    {
+        return $this->hasOne(BalitaStatus::class, 'tb_balita_id');
     }
 }

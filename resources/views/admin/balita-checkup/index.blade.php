@@ -1,36 +1,34 @@
 @extends('admin.layout.app')
-@section('title', 'Data Balita')
+@section('title', 'Data Check Up')
 
 @section('main-content')
 <x-page-layout>
-    @slot('pageTitle') Data Balita @endslot
+    @slot('pageTitle') Data Check Up @endslot
     @slot('breadcrumb')
         <li class="breadcrumb-item">Master Data</li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.data-balita.index') }}">Data Balita</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.data-check-up.index') }}">Data Check Up</a></li>
     @endslot
 
-    @slot('title') Data Balita @endslot
+    @slot('title') Data Check Up @endslot
 
     @slot('body')
         <x-messages />
-
-        <div class="row mb-2">
-            <div class="col">
-                <a href="{{ route('admin.data-balita.create') }}" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Tambah Data Balita</a>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col">
                 <x-datatables>
                     @slot('columns')
+                        <th style="width: 20%;">Tangal</th>
+                        <th style="width: 20%;">Posyandu</th>
                         <th>No. KIA</th>
                         <th>Nama</th>
-                        <th style="width: 5%;">JK</th>
-                        <th>Umur</th>
-                        <th>Nama Ibu</th>
-                        <th>Posyandu</th>
-                        <th>Terakhir Cek</th>
+                        <th class="none">JK</th>
+                        <th class="none">Umur</th>
+                        <th class="none">BB</th>
+                        <th class="none">TB</th>
+                        <th class="none">LK</th>
+                        <th class="none">LD</th>
+                        <th class="none">Status Gizi</th>
                     @endslot
                 </x-datatables>
             </div>
@@ -49,51 +47,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     var datatable = $('#datatables').DataTable({
+        responsive: true,
         processing: true,
         serverSide: true,
         ajax: "",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-            {data: 'id_kia', name: 'id_kia'},
-            {data: 'name', name: 'name'},
-            {data: 'gender', name: 'gender'},
-            {data: 'age', name: 'age'},
-            {data: 'mother_name', name: 'mother_name'},
+            {data: 'check_date', name: 'check_date'},
             {data: 'posyandu', name: 'posyandu'},
-            {data: 'last_check', name: 'last_check'},
+            {data: 'balita.id_kia', name: 'balita.id_kia'},
+            {data: 'balita.name', name: 'balita.name'},
+            {data: 'balita.gender', name: 'balita.gender'},
+            {data: 'age', name: 'age'},
+            {data: 'bb', name: 'bb'},
+            {data: 'tb', name: 'tb'},
+            {data: 'lk', name: 'lk'},
+            {data: 'ld', name: 'ld'},
+            {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, seacrhable: false}
         ],
         columnDefs: [
             {
-                "targets": 3,
-                "className": "text-center",
-            },
-            {
-                "targets": 6,
-                "className": "text-center",
-            },
-            {
-                "targets": 8,
+                "targets": 12,
                 "className": "text-center",
             },
         ]
     });
 
-    $('body').on('click', '#edit', function (e) {
-        $('#modal-default').modal('show');
-
-        var id = $(this).data('id');
-        var url = "{{ route('admin.balita-checkup.show',":id") }}";
-        url = url.replace(':id', id);
-
-        $.get(url, function (data) {
-            $('#modal-body').html(data.html);
-        });
-
-    });
-
-    function delete_balita(e) {
-        var url = '{{ route("admin.data-balita.destroy", ":id") }}';
+    function delete_checkup(e) {
+        var url = '{{ route("admin.data-check-up.destroy", ":id") }}';
         url = url.replace(':id', e);
         $.ajaxSetup({
             headers: {

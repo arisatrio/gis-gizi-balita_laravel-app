@@ -19,6 +19,7 @@ class Posyandu extends Model
         'longitude',
         'status',
     ];
+    protected $appends = ['totalBalita'];
 
     public function scopeActive($query)
     {
@@ -38,5 +39,20 @@ class Posyandu extends Model
     public function balita()
     {
         return $this->hasMany(Balita::class, 'tb_posyandu_id');
+    }
+
+    public function getTotalBalitaAttribute()
+    {
+        return $this->balita()->count();
+    }
+
+    public function totalGiziBaik()
+    {
+        return $this->hasManyThrough(BalitaStatus::class, Balita::class, 'tb_posyandu_id', 'tb_balita_id')->where('status', 1);
+    }
+
+    public function totalGiziBuruk()
+    {
+        return $this->hasManyThrough(BalitaStatus::class, Balita::class, 'tb_posyandu_id', 'tb_balita_id')->where('status', 0);
     }
 }

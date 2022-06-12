@@ -40,7 +40,7 @@
                     </a>
                 </li>
 
-                <li class="nav-header text-uppercase">Klasifikasi</li>
+                <li class="nav-header text-uppercase">SVM Klasifikasi</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
@@ -50,19 +50,19 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-brain"></i>
-                        <p>Data Training</p>
+                        <p>Training</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Data Testing</p>
+                        <p>Testing</p>
                     </a>
                 </li>
 
                 <li class="nav-header text-uppercase">Master</li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.data-balita.index') }}" class="nav-link {{  Route::is('admin.data-balita.*') ? 'active' : ''  }}">
+                    <a href="{{ route('admin.data-check-up.index') }}" class="nav-link {{  Route::is('admin.data-check-up.*') ? 'active' : ''  }}">
                         <i class="nav-icon fas fa-baby"></i>
                         <p>Data Check Up</p>
                     </a>

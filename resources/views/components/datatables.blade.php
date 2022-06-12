@@ -1,5 +1,5 @@
 <div>
-    <table id="datatables" class="table table-bordered table-hover">
+    <table id="datatables" class="table table-bordered table-hover" cellspacing="0" width="100%">
         <thead class="text-center">
             <tr>
                 <th style="width: 5%;">#</th>
