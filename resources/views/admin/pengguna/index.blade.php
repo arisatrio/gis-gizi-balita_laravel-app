@@ -1,22 +1,22 @@
 @extends('admin.layout.app')
-@section('title', 'Data Balita')
+@section('title', 'Data Pengguna')
 
 @section('main-content')
 <x-page-layout>
-    @slot('pageTitle') Data Balita @endslot
+    @slot('pageTitle') Data Pengguna @endslot
     @slot('breadcrumb')
         <li class="breadcrumb-item">Master Data</li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.data-balita.index') }}">Data Balita</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.data-pengguna.index') }}">Data Pengguna</a></li>
     @endslot
 
-    @slot('title') Data Balita @endslot
+    @slot('title') Data Pengguna @endslot
 
     @slot('body')
         <x-messages />
 
         <div class="row mb-2">
             <div class="col">
-                <a href="{{ route('admin.data-balita.create') }}" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Tambah Data Balita</a>
+                <a href="{{ route('admin.data-pengguna.create') }}" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Tambah Data Pengguna</a>
             </div>
         </div>
 
@@ -24,19 +24,16 @@
             <div class="col">
                 <x-datatables>
                     @slot('columns')
-                        <th>No. KIA</th>
+                        <th>Role</th>
                         <th>Nama</th>
-                        <th style="width: 5%;">JK</th>
-                        <th>Umur</th>
-                        <th>Nama Orang Tua</th>
-                        <th>Posyandu</th>
-                        <th>Terakhir Cek</th>
+                        <th>Email</th>
+                        <th>No. HP</th>
+                        <th style="width: 5%;">Status</th>
                     @endslot
                 </x-datatables>
             </div>
         </div>
-        @include('admin.layout._modal-riwayat')
-
+        
     @endslot
 </x-page-layout>
 @endsection
@@ -54,46 +51,31 @@
         ajax: "",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-            {data: 'id_kia', name: 'id_kia'},
+            {data: 'role', name: 'role'},
             {data: 'name', name: 'name'},
-            {data: 'gender', name: 'gender'},
-            {data: 'age', name: 'age'},
-            {data: 'parent_name', name: 'parent_name'},
-            {data: 'posyandu', name: 'posyandu'},
-            {data: 'last_check', name: 'last_check'},
+            {data: 'email', name: 'email'},
+            {data: 'phone', name: 'phone'},
+            {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, seacrhable: false}
         ],
         columnDefs: [
             {
-                "targets": 3,
+                "targets": 1,
+                "className": "text-center",
+            },
+            {
+                "targets": 5,
                 "className": "text-center",
             },
             {
                 "targets": 6,
                 "className": "text-center",
             },
-            {
-                "targets": 8,
-                "className": "text-center",
-            },
         ]
     });
 
-    $('body').on('click', '#edit', function (e) {
-        $('#modal-default').modal('show');
-
-        var id = $(this).data('id');
-        var url = "{{ route('admin.balita-checkup.show',":id") }}";
-        url = url.replace(':id', id);
-
-        $.get(url, function (data) {
-            $('#modal-body').html(data.html);
-        });
-
-    });
-
-    function delete_balita(e) {
-        var url = '{{ route("admin.data-balita.destroy", ":id") }}';
+    function delete_pengguna(e) {
+        var url = '{{ route("admin.data-pengguna.destroy", ":id") }}';
         url = url.replace(':id', e);
         $.ajaxSetup({
             headers: {

@@ -40,6 +40,7 @@
                     </a>
                 </li>
 
+                @if(auth()->user()->role == 'Admin')
                 <li class="nav-header text-uppercase">SVM Klasifikasi</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -59,6 +60,7 @@
                         <p>Testing</p>
                     </a>
                 </li>
+                @endif
 
                 <li class="nav-header text-uppercase">Master</li>
                 <li class="nav-item">
@@ -71,6 +73,13 @@
                     <a href="{{ route('admin.data-balita.index') }}" class="nav-link {{  Route::is('admin.data-balita.*') ? 'active' : ''  }}">
                         <i class="nav-icon fas fa-baby"></i>
                         <p>Data Balita</p>
+                    </a>
+                </li>
+                @if(auth()->user()->role == 'Admin')
+                <li class="nav-item">
+                    <a href="{{ route('admin.data-pengguna.index') }}" class="nav-link {{  Route::is('admin.data-pengguna.*') ? 'active' : ''  }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Data Pengguna</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -87,10 +96,11 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.data-lokasi.index') }}" class="nav-link {{  Route::is('admin.data-lokasi.*') ? 'active' : ''  }}">
-                    <i class="nav-icon fas fa-database"></i>
-                    <p>Data Lokasi</p>
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>Data Lokasi</p>
                     </a>
                 </li>
+                @endif
 
             </ul>
         </nav>

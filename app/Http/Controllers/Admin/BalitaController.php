@@ -9,7 +9,8 @@ use Carbon\Carbon;
 
 use App\http\Requests\Balita\BalitaStoreRequest;
 use App\Models\Posyandu;
-use App\models\Balita;
+use App\Models\Balita;
+use App\Models\User;
 
 class BalitaController extends Controller
 {
@@ -21,7 +22,7 @@ class BalitaController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()) {
-            $data = Balita::with('posyandu')->get();
+            $data = Balita::with(['posyandu', 'parent'])->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -33,6 +34,9 @@ class BalitaController extends Controller
                 })
                 ->addColumn('last_check', function ($row) {
                     return '-';
+                })
+                ->addColumn('parent_name', function ($row) {
+                    return $row->parent->name;
                 })
                 ->addColumn('action', function ($row) {
                     $checkIn = '<a href="'.route('admin.balita-checkup.create', $row->id).'" class="btn btn-outline-success btn-block"><i class="fas fa-plus"></i> Check Up</a>';
@@ -54,9 +58,10 @@ class BalitaController extends Controller
      */
     public function create()
     {
-        $posyandu = Posyandu::with('rukunWarga')->active()->get();
+        $posyandu   = Posyandu::with('rukunWarga')->active()->get();
+        $users      = User::active()->masyarakat()->get();
 
-        return view('admin.balita.create', compact('posyandu'));
+        return view('admin.balita.create', compact('posyandu', 'users'));
     }
 
     /**
@@ -91,10 +96,11 @@ class BalitaController extends Controller
      */
     public function edit(Balita $data_balitum)
     {
-        $posyandu = Posyandu::with('rukunWarga')->active()->get();
+        $posyandu   = Posyandu::with('rukunWarga')->active()->get();
+        $users      = User::active()->masyarakat()->get(); 
         $data_balita = $data_balitum;
 
-        return view('admin.balita.edit', compact('data_balita', 'posyandu'));
+        return view('admin.balita.edit', compact('data_balita', 'posyandu', 'users'));
     }
 
     /**

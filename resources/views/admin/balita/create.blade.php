@@ -28,12 +28,17 @@
                 </select>
             </div>
 
-            <hr>
-
             <div class="form-group">
-                <label>Nama Ibu<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="mother_name" value="{{ old('mother_name') }}">
+                <label>Nama Orang Tua<span class="text-danger">*</span></label>
+                <select class="form-control" name="parent_id" id="parent_id">
+                    <option selected disabled hidden>-- Cari Orang Tua --</option>
+                    @foreach ($users as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
             </div>
+
+            <hr>
 
             <div class="form-group">
                 <label>NO. Kartu Identitas Anak (KIA)<span class="text-danger">*</span></label>
@@ -72,3 +77,15 @@
     @endslot
 </x-page-layout>
 @endsection
+
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#parent_id').select2();
+        });
+    </script>
+@endpush

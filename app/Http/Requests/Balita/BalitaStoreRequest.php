@@ -26,7 +26,7 @@ class BalitaStoreRequest extends FormRequest
         return [
             'id_kia'            => 'required|numeric',
             'tb_posyandu_id'    => 'required|exists:tb_posyandus,id',
-            'mother_name'       => 'required|string',
+            'parent_id'         => 'required|exists:users,id',
             'name'              => 'required|string',
             'birth'             => 'required|date_format:Y-m-d|before_or_equal:today',
             'gender'            => 'required|in:L,P',

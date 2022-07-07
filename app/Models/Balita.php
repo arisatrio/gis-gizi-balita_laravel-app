@@ -14,7 +14,7 @@ class Balita extends Model
     protected $fillable = [
         'id_kia',
         'tb_posyandu_id',
-        'mother_name',
+        'parent_id',
         'name',
         'birth',
         'gender',
@@ -31,6 +31,11 @@ class Balita extends Model
     public function getFullAgeAttribute()
     {
         return Carbon::parse($this->birth)->diff(Carbon::now())->format('%y tahun %m bulan and %d hari');;
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'parent_id');
     }
 
     public function posyandu()

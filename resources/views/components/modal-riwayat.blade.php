@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th class="bg-light" style="width: 50%;">Nama Ibu</th>
-                        <td>{{ $balita->mother_name }}</td>
+                        <td>{{ $balita->parent->name }}</td>
                     </tr>
                     <tr>
                         <th class="bg-light" style="width: 50%;">Alamat</th>
@@ -58,7 +58,7 @@
                     <tr>
                         <th class="bg-light" style="width: 50%;">Status Gizi</th>
                         <td>
-                            @if($balita->statusGizi->status != NULL)
+                            @if($balita->statusGizi)
                                 @if($balita->statusGizi->status === 1)
                                     <span class="badge badge-success">Gizi Baik</span></td>
                                 @else
@@ -71,6 +71,10 @@
                 </table>
             </div>
             <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
+
+                @if($balita->checkUp->count() == 0)
+                    <span class="badge badge-warning">Belum pernah Check Up</span>
+                @endif
 
                 @foreach ($balita->checkUp as $item)
                 <div class="card card-primary">

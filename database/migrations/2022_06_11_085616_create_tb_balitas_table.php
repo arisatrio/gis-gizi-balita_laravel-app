@@ -17,13 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('id_kia');
             $table->foreignId('tb_posyandu_id')->constrained()->onDelete('cascade');
-            $table->string('mother_name');
+            $table->unsignedBigInteger('parent_id');
             $table->string('name');
             $table->date('birth');
             $table->enum('gender', ['L', 'P']);
             $table->text('address');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('parent_id')->references('id')->on('users');
         });
     }
 

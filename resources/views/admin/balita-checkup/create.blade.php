@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label>Nama Ibu Balita<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" value="{{ $balita->mother_name }}" readonly="readonly">
+                <input type="text" class="form-control" value="{{ $balita->parent->name }}" readonly="readonly">
             </div>
 
             <hr>

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\BalitaController;
 use App\Http\Controllers\Admin\PosyanduController;
 use App\Http\Controllers\Admin\RukunWargaController;
 use App\Http\Controllers\Admin\LokasiController;
+use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\DownloadTemplateLokasiController;
 
 /*
@@ -40,6 +41,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         'data-posyandu'     => PosyanduController::class,
         'data-rw'           => RukunWargaController::class,
         'data-lokasi'       => LokasiController::class,
+        'data-pengguna'     => PenggunaController::class,
     ], [ 'except' => 'show' ]);
     Route::get('download-template-lokasi', DownloadTemplateLokasiController::class)->name('download-geojson');
 });

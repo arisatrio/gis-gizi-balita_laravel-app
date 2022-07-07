@@ -28,7 +28,7 @@ class BalitaCheckUpController extends Controller
     public function show($id)
     {
         setlocale(LC_ALL, 'IND');
-        $balita = Balita::with(['posyandu', 'checkup', 'statusGizi'])->find($id);
+        $balita = Balita::with(['posyandu', 'checkup', 'statusGizi', 'parent'])->find($id);
 
         $view = view('components.modal-riwayat', ['balita' => $balita]);
         $html = $view->render();
