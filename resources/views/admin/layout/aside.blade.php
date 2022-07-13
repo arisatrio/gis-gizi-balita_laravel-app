@@ -62,7 +62,24 @@
                 </li>
                 @endif
 
-                <li class="nav-header text-uppercase">Master</li>
+                @if(auth()->user()->role == 'Masyarakat')
+                <li class="nav-header text-uppercase">Check Up</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Riwayat</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+                @endif
+
+                @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Tenaga Kesehatan')
+                <li class="nav-header text-uppercase">Check Up</li>
                 <li class="nav-item">
                     <a href="{{ route('admin.data-check-up.index') }}" class="nav-link {{  Route::is('admin.data-check-up.*') ? 'active' : ''  }}">
                         <i class="nav-icon fas fa-baby"></i>
@@ -75,7 +92,9 @@
                         <p>Data Balita</p>
                     </a>
                 </li>
+                @endif
                 @if(auth()->user()->role == 'Admin')
+                <li class="nav-header text-uppercase">Master</li>
                 <li class="nav-item">
                     <a href="{{ route('admin.data-pengguna.index') }}" class="nav-link {{  Route::is('admin.data-pengguna.*') ? 'active' : ''  }}">
                         <i class="nav-icon fas fa-users"></i>

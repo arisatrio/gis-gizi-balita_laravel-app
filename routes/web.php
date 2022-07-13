@@ -29,13 +29,14 @@ use App\Http\Controllers\Admin\DownloadTemplateLokasiController;
 
 Route::get('/', HomeController::class);
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+Route::group(['as' => 'admin.', 'middleware' => 'auth'], function () {
 
 
     Route::get('/data-balita/{id}/check-up', [BalitaCheckUpController::class, 'create'])->name('balita-checkup.create');
     Route::post('/data-balita/check-up', [BalitaCheckUpController::class, 'store'])->name('balita-checkup.store');
     Route::get('/data-balita/{id}/riwayat-check-up', [BalitaCheckUpController::class, 'show'])->name('balita-checkup.show');
     Route::resource('data-check-up', CheckUpController::class)->except(['create', 'store', 'show']);
+
     Route::resources([
         'data-balita'       => BalitaController::class,
         'data-posyandu'     => PosyanduController::class,

@@ -11,6 +11,10 @@ use App\Models\BalitaCheck;
 
 class CheckUpController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('tenaga-kesehatan');
+    }
     /**
      * Display a listing of the resource.
      *

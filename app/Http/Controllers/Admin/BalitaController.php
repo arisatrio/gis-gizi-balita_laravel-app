@@ -14,6 +14,11 @@ use App\Models\User;
 
 class BalitaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('tenaga-kesehatan');
+    }
+
     /**
      * Display a listing of the resource.
      *

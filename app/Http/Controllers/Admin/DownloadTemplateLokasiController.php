@@ -13,6 +13,12 @@ class DownloadTemplateLokasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    
     public function __invoke()
     {
         return response()->download(public_path('/files/sunyaragi.geojson'));

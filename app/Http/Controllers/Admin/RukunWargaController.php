@@ -12,6 +12,11 @@ use App\Models\RukunWarga;
 
 class RukunWargaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
