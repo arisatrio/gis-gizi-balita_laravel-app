@@ -1,0 +1,73 @@
+@extends('admin.layout.app')
+@section('title', 'Tambah Data Training')
+
+@section('main-content')
+<x-page-layout>
+    @slot('pageTitle') Tambah Data Training @endslot
+    @slot('breadcrumb')
+        <li class="breadcrumb-item">SWM Klasifikasi</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.data-training.index') }}">Data Training</a></li>
+        <li class="breadcrumb-item">Tambah Data Training</li>
+    @endslot
+
+    @slot('title') Form Data Training @endslot
+
+    @slot('body')
+        <x-messages />
+        
+        <form action="{{ route('admin.data-training.store') }}" method="POST">
+            @csrf
+
+            <div class="form-group">
+                <label for="">Jenis Kelamin</label>
+                <select name="jk" id="jk" class="form-control">
+                    <option selected disabled hidden>--Pilih Jenis Kelamin--</option>
+                    <option value="L">L</option>
+                    <option value="P">P</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Umur <small>dalam bulan</small><span class="text-danger">*</span></label>
+                <input type="number" class="form-control" name="umur" value="{{ old('umur') }}">
+            </div>
+
+            <div class="form-group">
+                <label>Berat Badan (BB) <small>kg</small><span class="text-danger">*</span></label>
+                <input type="number" class="form-control" name="bb" value="{{ old('bb') }}">
+            </div>
+
+            <div class="form-group">
+                <label>Tinggi Badan (TB) <small>cm</small><span class="text-danger">*</span></label>
+                <input type="number" class="form-control" name="tb" value="{{ old('tb') }}">
+            </div>
+
+            <div class="form-group">
+                <label>Lingkar Kepala (LK) <small>cm</small><span class="text-danger">*</span></label>
+                <input type="number" class="form-control" name="lk" value="{{ old('lk') }}">
+            </div>
+
+            <div class="form-group">
+                <label>Lingkar Dada (LD) <small>cm</small><span class="text-danger">*</span></label>
+                <input type="number" class="form-control" name="ld" value="{{ old('ld') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="">Status Gizi</label>
+                <select name="status" id="status" class="form-control">
+                    <option selected disabled hidden>--Pilih Status Gizi--</option>
+                    <option value="buruk">Buruk</option>
+                    <option value="kurang">Kurang</option>
+                    <option value="baik">Baik</option>
+                    <option value="lebih">Lebih</option>
+                </select>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary float-right">Simpan</button>
+            </div>
+        </form>
+        
+    @endslot
+</x-page-layout>
+@endsection

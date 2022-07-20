@@ -42,14 +42,14 @@
 
                 @if(auth()->user()->role == 'Admin')
                 <li class="nav-header text-uppercase">SVM Klasifikasi</li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>Normalisasi</p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.data-training.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-brain"></i>
                         <p>Training</p>
                     </a>

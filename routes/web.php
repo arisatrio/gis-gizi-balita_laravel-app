@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\RukunWargaController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\DownloadTemplateLokasiController;
+use App\Http\Controllers\Admin\DataTrainingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::group(['as' => 'admin.', 'middleware' => 'auth'], function () {
         'data-rw'           => RukunWargaController::class,
         'data-lokasi'       => LokasiController::class,
         'data-pengguna'     => PenggunaController::class,
+        'data-training'     => DataTrainingController::class,
     ], [ 'except' => 'show' ]);
     Route::get('download-template-lokasi', DownloadTemplateLokasiController::class)->name('download-geojson');
 });
