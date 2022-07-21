@@ -16,4 +16,9 @@ class DataTraining extends Model
         'ld',
         'status'
     ];
+
+    public function normalisasi()
+    {
+        return $this->hasOne(DataNormalisasi::class, 'tb_data_training_id');
+    }
 }

@@ -28,54 +28,48 @@
 
                 <li class="nav-header text-uppercase">Dashboard</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.dashboard-map') }}" class="nav-link {{  Route::is('admin.dashbord-map.*') ? 'active' : ''  }}">
                         <i class="nav-icon fas fa-map"></i>
                         <p>Dashboard Maps</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{  Route::is('admin.dashbord-map.*') ? 'active' : ''  }}">
                         <i class="nav-icon fas fa-chart-area"></i>
                         <p>Dashboard Analytics</p>
                     </a>
                 </li>
 
                 @if(auth()->user()->role == 'Admin')
-                <li class="nav-header text-uppercase">SVM Klasifikasi</li>
-                {{-- <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>Normalisasi</p>
-                    </a>
-                </li> --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.data-training.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-brain"></i>
-                        <p>Training</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Testing</p>
-                    </a>
-                </li>
+                    <li class="nav-header text-uppercase">SVM Klasifikasi</li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.data-training.index') }}" class="nav-link {{  Route::is('admin.data-training.*') ? 'active' : ''  }}">
+                            <i class="nav-icon fas fa-brain"></i>
+                            <p>Training</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.data-normalisasi.index') }}" class="nav-link {{  Route::is('admin.data-normalisasi.*') ? 'active' : ''  }}">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>Normalisasi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Testing</p>
+                        </a>
+                    </li>
                 @endif
 
                 @if(auth()->user()->role == 'Masyarakat')
-                <li class="nav-header text-uppercase">Check Up</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Riwayat</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Profile</p>
-                    </a>
-                </li>
+                    <li class="nav-header text-uppercase">Balita</li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.balita-saya.index') }}" class="nav-link {{  Route::is('user.balita-saya.*') ? 'active' : ''  }}">
+                            <i class="nav-icon fas fa-baby"></i>
+                            <p>Balita Saya</p>
+                        </a>
+                    </li>
                 @endif
 
                 @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Tenaga Kesehatan')

@@ -16,6 +16,11 @@ use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\DownloadTemplateLokasiController;
 use App\Http\Controllers\Admin\DataTrainingController;
+use App\Http\Controllers\Admin\DataNormalisasiController;
+use App\Http\Controllers\Admin\GenerateNormalisasiController;
+
+use App\Http\Controllers\BalitaSayaController;
+use App\Http\Controllers\BalitaSayaRiwayatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +36,9 @@ use App\Http\Controllers\Admin\DataTrainingController;
 Route::get('/', HomeController::class);
 
 Route::group(['as' => 'admin.', 'middleware' => 'auth'], function () {
-
+    //DASHBAORD
+    Route::get('/dashboard-map', DashboardMapController::class)->name('dashboard-map');
+    Route::get('/dashboard', DashboardAnalyticsController::class)->name('dashboard');
 
     Route::get('/data-balita/{id}/check-up', [BalitaCheckUpController::class, 'create'])->name('balita-checkup.create');
     Route::post('/data-balita/check-up', [BalitaCheckUpController::class, 'store'])->name('balita-checkup.store');
@@ -45,12 +52,15 @@ Route::group(['as' => 'admin.', 'middleware' => 'auth'], function () {
         'data-lokasi'       => LokasiController::class,
         'data-pengguna'     => PenggunaController::class,
         'data-training'     => DataTrainingController::class,
+        'data-normalisasi'  => DataNormalisasiController::class,
     ], [ 'except' => 'show' ]);
-    Route::get('download-template-lokasi', DownloadTemplateLokasiController::class)->name('download-geojson');
+    Route::get('/download-template-lokasi', DownloadTemplateLokasiController::class)->name('download-geojson');
+    Route::get('/data-normalisasi/generate-normalisasi', GenerateNormalisasiController::class)->name('generate-normalisasi');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['as' => 'user.', 'middleware' => ['auth', 'masyarakat']], function () {
+    Route::resource('balita-saya', BalitaSayaController::class);
+});
+
 
 require __DIR__.'/auth.php';

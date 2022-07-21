@@ -22,8 +22,8 @@
                 <label for="">Jenis Kelamin</label>
                 <select name="jk" id="jk" class="form-control">
                     <option selected disabled hidden>--Pilih Jenis Kelamin--</option>
-                    <option value="L">L</option>
-                    <option value="P">P</option>
+                    <option value="1">L</option>
+                    <option value="0">P</option>
                 </select>
             </div>
 
@@ -56,10 +56,8 @@
                 <label for="">Status Gizi</label>
                 <select name="status" id="status" class="form-control">
                     <option selected disabled hidden>--Pilih Status Gizi--</option>
-                    <option value="buruk">Buruk</option>
-                    <option value="kurang">Kurang</option>
-                    <option value="baik">Baik</option>
-                    <option value="lebih">Lebih</option>
+                    <option value="1">Gizi Baik</option>
+                    <option value="0">Gizi Buruk</option>
                 </select>
             </div>
 

@@ -17,12 +17,26 @@ class DataTrainingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
         if($request->ajax()) {
             $data = DataTraining::all();
 
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->addColumn('jk', function ($row) {
+                    if($row->jk) {
+                        return 'L';
+                    } else {
+                        return 'P';
+                    }
+                })
+                ->addColumn('status', function ($row) {
+                    if($row->status == 0){
+                        return 'Gizi Buruk';
+                    } else{
+                        return 'Gizi Baik';
+                    }
+                })
                 ->addColumn('action', function ($row) {
                     $edit = '<a href="'.route('admin.data-training.edit', $row->id).'" class="btn btn-default btn-sm">EDIT</a>'; 
                     $delete = '<a href="javascript:void(0)" onclick="delete_training('.$row->id.')" class="btn btn-default btn-sm mx-2">HAPUS</a>';

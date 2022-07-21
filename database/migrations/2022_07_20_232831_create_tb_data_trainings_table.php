@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('tb_data_trainings', function (Blueprint $table) {
             $table->id();
             $table->integer('umur');
-            $table->enum('jk', ['L', 'P']);
+            $table->boolean('jk');
             $table->integer('bb');
             $table->integer('tb');
             $table->integer('lk');
             $table->integer('ld');
-            $table->enum('status', ['buruk', 'kurang', 'baik', 'lebih']);
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -11,11 +11,6 @@ use App\Models\BalitaCheck;
 
 class BalitaCheckUpController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('tenaga-kesehatan');
-    }
-
     public function create($id)
     {
         $balita = Balita::find($id);

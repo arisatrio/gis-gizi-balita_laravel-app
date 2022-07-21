@@ -1,22 +1,21 @@
 @extends('admin.layout.app')
-@section('title', 'Data Training')
+@section('title', 'Data Balita Saya')
 
 @section('main-content')
 <x-page-layout>
-    @slot('pageTitle') Data Training @endslot
+    @slot('pageTitle') Data Balita Saya @endslot
     @slot('breadcrumb')
-        <li class="breadcrumb-item">Master Data</li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.data-training.index') }}">Data Training</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('user.balita-saya.index') }}">Data Balita Saya</a></li>
     @endslot
 
-    @slot('title') Data Training @endslot
+    @slot('title') Data Balita Saya @endslot
 
     @slot('body')
         <x-messages />
 
         <div class="row mb-2">
             <div class="col">
-                <a href="{{ route('admin.data-training.create') }}" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Tambah Data Training</a>
+                <a href="{{ route('user.balita-saya.create') }}" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Tambah Data Balita Saya</a>
             </div>
         </div>
 
@@ -24,17 +23,18 @@
             <div class="col">
                 <x-datatables>
                     @slot('columns')
-                        <th>Umur (Bulan)</th>
-                        <th>Jenis Kelamin (JK)</th>
-                        <th>Berat Badan (BB)</th>
-                        <th>Tinggi Badan (TB)</th>
-                        <th>Lingkar Kepala (LK)</th>
-                        <th>Lingkar Dada (LD)</th>
-                        <th>Status</th>
+                        <th>No. KIA</th>
+                        <th>Nama</th>
+                        <th style="width: 5%;">JK</th>
+                        <th>Umur</th>
+                        <th>Posyandu</th>
+                        <th>Terakhir Cek</th>
+                        <th>Status Gizi Terakhir</th>
                     @endslot
                 </x-datatables>
             </div>
         </div>
+        @include('admin.layout._modal-riwayat')
 
     @endslot
 </x-page-layout>
@@ -53,16 +53,24 @@
         ajax: "",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-            {data: 'umur', name: 'umur'},
-            {data: 'jk', name: 'jk'},
-            {data: 'bb', name: 'bb'},
-            {data: 'tb', name: 'tb'},
-            {data: 'lk', name: 'lk'},
-            {data: 'ld', name: 'ld'},
-            {data: 'status', name: 'status'},
+            {data: 'id_kia', name: 'id_kia'},
+            {data: 'name', name: 'name'},
+            {data: 'gender', name: 'gender'},
+            {data: 'age', name: 'age'},
+            {data: 'posyandu', name: 'posyandu'},
+            {data: 'last_check', name: 'last_check'},
+            {data: 'last_check', name: 'last_check'},
             {data: 'action', name: 'action', orderable: false, seacrhable: false}
         ],
         columnDefs: [
+            {
+                "targets": 3,
+                "className": "text-center",
+            },
+            {
+                "targets": 5,
+                "className": "text-center",
+            },
             {
                 "targets": 8,
                 "className": "text-center",
@@ -74,7 +82,7 @@
         $('#modal-default').modal('show');
 
         var id = $(this).data('id');
-        var url = "{{ route('admin.balita-checkup.show',":id") }}";
+        var url = "{{ route('user.balita-saya.show',":id") }}";
         url = url.replace(':id', id);
 
         $.get(url, function (data) {
@@ -83,8 +91,8 @@
 
     });
 
-    function delete_training(e) {
-        var url = '{{ route("admin.data-training.destroy", ":id") }}';
+    function delete_balita(e) {
+        var url = '{{ route("user.balita-saya.destroy", ":id") }}';
         url = url.replace(':id', e);
         $.ajaxSetup({
             headers: {

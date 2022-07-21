@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <h3 class="col-6 card-title">{{ $title }}</h3>
+                                <h3 class="col-12 card-title">{{ $title }}</h3>
                             </div>
                         </div>
                         <div class="card-body">
