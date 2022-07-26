@@ -50,7 +50,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>-</h3>
+                                <h3>{{ $totalGiziBaik }}</h3>
                                 <p>Total Gizi Baik</p>
                             </div>
                             <div class="icon">
@@ -62,7 +62,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>-</h3>
+                                <h3>{{ $totalGiziBuruk }}</h3>
                                 <p>Total Gizi Buruk</p>
                             </div>
                             <div class="icon">
@@ -75,7 +75,7 @@
     
     
                 <div class="row">
-                    <section class="col-lg-7">
+                    <section class="col-lg-8">
                         <div class="card">
                             <div class="card-header ui-sortable-handle" style="cursor: move;">
                                 <h3 class="card-title">
@@ -84,11 +84,11 @@
                                 </h3>
                             </div>
                             <div class="card-body">
-                                <canvas id="myChart" width="400" height="400"></canvas> 
+                                <canvas id="myChart" width="400" height="190"></canvas> 
                             </div>
                         </div>
                     </section>
-                    <section class="col-lg-5">
+                    <section class="col-lg-4">
                         <div class="card">
                             <div class="card-header ui-sortable-handle" style="cursor: move;">
                                 <h3 class="card-title">
@@ -96,8 +96,8 @@
                                     Persentase Gizi Balita
                                 </h3>
                             </div>
-                            <div class="card-body">
-                                <canvas id="myChart2" width="400" height="400"></canvas> 
+                            <div class="card-body" width="400" height="180">
+                                <canvas id="myChart2"></canvas> 
                             </div>
                         </div>
                     </section>
@@ -118,67 +118,47 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        var labels  = @json($labels);
+        var data    = @json($data);
+        var dataPie = @json($dataPie);
+        
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
+                labels: labels, 
+                datasets: data
             },
             options: {
+                responsive: true,
                 scales: {
+                    x: {
+                        stacked: true 
+                    },
                     y: {
-                        beginAtZero: true
+                        stacked: true 
                     }
                 }
             }
         });
-        
 
-        const data = {
-  labels: [
-    'Red',
-    'Blue',
-    'Yellow'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-  }]
-};
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+                const myChart2 = new Chart(ctx2, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            'Gizi Baik',
+                            'Gizi Buruk',
+                            'Belum Diklasifikasi'
+                        ],
+                        datasets: [{
+                            data: dataPie,
+                            backgroundColor: ['#28a745', '#dc3545', 'grey'],
+                            hoverOffset: 5
+                        }]
+                    },
 
-const ctx2 = document.getElementById('myChart2').getContext('2d');
-        const myChart2 = new Chart(ctx2, {
-              type: 'pie',
-              data: data,
-
-        });
+                });
 
         </script>
         

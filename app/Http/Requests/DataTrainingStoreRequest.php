@@ -27,9 +27,6 @@ class DataTrainingStoreRequest extends FormRequest
             'umur'      => 'required|numeric|max:59',
             'jk'        => 'required',
             'bb'        => 'required|numeric',
-            'tb'        => 'required|numeric',
-            'lk'        => 'required|numeric',
-            'ld'        => 'required|numeric',
             'status'    => 'required'
         ];
     }

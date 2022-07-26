@@ -24,10 +24,10 @@ class UsersSeeder extends Seeder
         ]);
 
         User::create([
-            'name'  => 'Masyarakat',
-            'email' => 'Masyarakat@mail.com',
+            'name'      => 'tenakes',
+            'email'     => 'tenakes@mail.com',
             'password'  => bcrypt('password'),
-            'role'      => 'Masyarakat',
+            'role'      => 'Tenaga Kesehatan',
         ]);
     }
 }

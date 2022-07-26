@@ -17,9 +17,9 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
-        $lokasi = Lokasi::first();
-        $posyandu = Posyandu::with(['rukunWarga'])->withCount(['balita', 'totalGiziBaik', 'totalGiziBuruk'])->active()->get();
+        // $lokasi = Lokasi::first();
+        // $posyandu = Posyandu::with(['rukunWarga'])->withCount(['balita', 'totalGiziBaik', 'totalGiziBuruk'])->active()->get();
         
-        return view('welcome', compact('lokasi', 'posyandu'));
+        return view('welcome');
     }
 }

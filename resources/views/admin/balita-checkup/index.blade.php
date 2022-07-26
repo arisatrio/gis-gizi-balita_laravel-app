@@ -23,12 +23,12 @@
                         <th>No. KIA</th>
                         <th>Nama</th>
                         <th class="none">JK</th>
-                        <th class="none">Umur</th>
+                        <th class="">Umur</th>
                         <th class="none">BB</th>
                         <th class="none">TB</th>
                         <th class="none">LK</th>
                         <th class="none">LD</th>
-                        <th class="none">Status Gizi</th>
+                        <th class="">Status Gizi</th>
                     @endslot
                 </x-datatables>
             </div>

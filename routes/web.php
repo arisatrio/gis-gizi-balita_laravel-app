@@ -18,9 +18,13 @@ use App\Http\Controllers\Admin\DownloadTemplateLokasiController;
 use App\Http\Controllers\Admin\DataTrainingController;
 use App\Http\Controllers\Admin\DataNormalisasiController;
 use App\Http\Controllers\Admin\GenerateNormalisasiController;
+use App\Http\Controllers\Admin\DataTestingController;
+use App\Http\Controllers\Admin\GenerateKlasifikasiController;
 
 use App\Http\Controllers\BalitaSayaController;
 use App\Http\Controllers\BalitaSayaRiwayatController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UpdatePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,14 +57,20 @@ Route::group(['as' => 'admin.', 'middleware' => 'auth'], function () {
         'data-pengguna'     => PenggunaController::class,
         'data-training'     => DataTrainingController::class,
         'data-normalisasi'  => DataNormalisasiController::class,
+        'data-testing'      => DataTestingController::class,
     ], [ 'except' => 'show' ]);
     Route::get('/download-template-lokasi', DownloadTemplateLokasiController::class)->name('download-geojson');
     Route::get('/data-normalisasi/generate-normalisasi', GenerateNormalisasiController::class)->name('generate-normalisasi');
+    Route::get('/data-check-up/generate-klasifikasi/{id}', GenerateKlasifikasiController::class)->name('generate-klasifikasi');
 });
 
 Route::group(['as' => 'user.', 'middleware' => ['auth', 'masyarakat']], function () {
     Route::resource('balita-saya', BalitaSayaController::class);
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('profile', ProfileController::class)->only(['index', 'update']);
+    Route::post('/update-password', UpdatePasswordController::class)->name('update-password');
+});
 
 require __DIR__.'/auth.php';

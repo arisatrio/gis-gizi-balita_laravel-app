@@ -18,13 +18,9 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             LokasiSeeder::class,
             PosyanduSeeder::class,
-            BalitaSeeder::class,
+            // BalitaSeeder::class,
+            MassSeeder::class,
+            DataTrainingSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

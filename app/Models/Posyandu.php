@@ -26,10 +26,10 @@ class Posyandu extends Model
         return $query->where('status', 'active');
     }
 
-    public function getNameAttribute($value)
-    {
-        return 'Posyandu '.$value.' ('.$this->rukunWarga->name.')';
-    }
+    // public function getNameAttribute($value)
+    // {
+    //     return 'Posyandu '.$value.' ('.$this->rukunWarga->name.')';
+    // }
 
     public function rukunWarga()
     {
@@ -41,18 +41,23 @@ class Posyandu extends Model
         return $this->hasMany(Balita::class, 'tb_posyandu_id');
     }
 
+    public function giziBaik()
+    {
+        return $this->balita()->where('status', 1);
+    }
+
+    public function giziBuruk()
+    {
+        return $this->balita()->where('status', 0);
+    }
+
+    public function belumKlasifikasi()
+    {
+        return $this->balita()->whereNull('status');
+    }
+
     public function getTotalBalitaAttribute()
     {
         return $this->balita()->count();
-    }
-
-    public function totalGiziBaik()
-    {
-        return $this->hasManyThrough(BalitaStatus::class, Balita::class, 'tb_posyandu_id', 'tb_balita_id')->where('status', 1);
-    }
-
-    public function totalGiziBuruk()
-    {
-        return $this->hasManyThrough(BalitaStatus::class, Balita::class, 'tb_posyandu_id', 'tb_balita_id')->where('status', 0);
     }
 }

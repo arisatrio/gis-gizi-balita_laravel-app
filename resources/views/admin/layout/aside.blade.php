@@ -12,7 +12,7 @@
               <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
           </div>
           <div class="info">
-              <a href="#" class="d-block text-uppercase">{{ auth()->user()->name }}</a>
+              <a href="{{ route('profile.index') }}" class="d-block text-uppercase">{{ auth()->user()->name }}</a>
           </div>
           <div class="info d-flex ml-auto">
               <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="d-block text-danger"><i class="fas fa-sign-out-alt"></i></a>
@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('admin.data-testing.index') }}" class="nav-link {{  Route::is('admin.data-testing.*') ? 'active' : ''  }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Testing</p>
                         </a>

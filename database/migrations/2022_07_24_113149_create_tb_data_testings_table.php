@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_balita_status', function (Blueprint $table) {
+        Schema::create('tb_data_testings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tb_balita_id')->constrained()->onDelete('cascade');
-            $table->boolean('status')->nullable();
+            $table->foreignId('tb_data_normalisasi_id')->constrained()->onDelete('cascade');
+            $table->boolean('status_testing');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_balita_status');
+        Schema::dropIfExists('data_testings');
     }
 };

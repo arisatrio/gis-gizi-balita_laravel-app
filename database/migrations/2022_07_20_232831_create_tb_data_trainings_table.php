@@ -17,11 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('umur');
             $table->boolean('jk');
-            $table->integer('bb');
-            $table->integer('tb');
-            $table->integer('lk');
-            $table->integer('ld');
-            $table->integer('status');
+            $table->float('bb');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

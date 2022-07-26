@@ -39,22 +39,7 @@
             </div>
 
             <div class="form-group">
-                <label>Tinggi Badan (TB) <small>cm</small><span class="text-danger">*</span></label>
-                <input type="number" class="form-control" name="tb" value="{{ $data->tb }}">
-            </div>
-
-            <div class="form-group">
-                <label>Lingkar Kepala (LK) <small>cm</small><span class="text-danger">*</span></label>
-                <input type="number" class="form-control" name="lk" value="{{ $data->lk }}">
-            </div>
-
-            <div class="form-group">
-                <label>Lingkar Dada (LD) <small>cm</small><span class="text-danger">*</span></label>
-                <input type="number" class="form-control" name="ld" value="{{ $data->ld }}">
-            </div>
-
-            <div class="form-group">
-                <label for="">Status Gizi</label>
+                <label for="">Status Gizi (BB/U)</label>
                 <select name="status" id="status" class="form-control">
                     <option selected disabled hidden>--Pilih Status Gizi--</option>
                     <option value="buruk" @if($data->status === 'buruk') selected @endif>Buruk</option>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('birth');
             $table->enum('gender', ['L', 'P']);
             $table->text('address');
+            $table->boolean('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

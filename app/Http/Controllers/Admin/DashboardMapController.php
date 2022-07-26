@@ -19,7 +19,7 @@ class DashboardMapController extends Controller
     public function __invoke(Request $request)
     {
         $lokasi = Lokasi::first();
-        $posyandu = Posyandu::with(['rukunWarga'])->withCount(['balita', 'totalGiziBaik', 'totalGiziBuruk'])->active()->get();
+        $posyandu = Posyandu::with(['rukunWarga'])->withCount(['balita', 'giziBaik', 'giziBuruk', 'belumKlasifikasi'])->active()->get();
 
         return view('admin.dashboard-map', compact('lokasi', 'posyandu'));
     }

@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_data_normalisasis', function (Blueprint $table) {
+        Schema::create('tb_svm_testing_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tb_data_training_id')->constrained()->onDelete('cascade');
-            $table->decimal('umur_norm', 8, 5);
-            $table->integer('jk_norm');
-            $table->decimal('bb_norm', 8, 5);
-            $table->boolean('status_norm');
+            $table->foreignId('tb_svm_parameter_id')->constrained()->onDelete('cascade');
+            $table->integer('total_data_to_train')->nullable();
+            $table->integer('total_data_to_test')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_normalisasi');
+        Schema::dropIfExists('tb_svm_testing_logs');
     }
 };

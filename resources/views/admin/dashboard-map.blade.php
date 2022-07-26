@@ -21,12 +21,6 @@
     @slot('body')
         <x-messages />
 
-        {{-- <div class="row mb-2">
-            <div class="col">
-                <a href="{{ route('admin.dashboard-map') }}" class="btn btn-success float-right"> <i class="fas fa-sync"></i> Reload</a>
-            </div>
-        </div> --}}
-
         <div class="row">
             <div class="col">
                 <div id="map"></div>
@@ -101,12 +95,14 @@
                 radius: 100
             }).addTo(map);
             var posyandu        = '<b>'+pos.name+'</b><br>'+'<small>'+pos.address+'</small><br><hr>';
-            var totalBalita     = '<b>Total Balita: '+pos.totalBalita+'</b><br>';
-            var totalGiziBaik   = '<b>Gizi Baik: <span style="color:green">'+pos.total_gizi_baik_count+'</span></b><br>';
-            var totalGiziBuruk  = '<b>Gizi Buruk: <span style="color:red">'+pos.total_gizi_buruk_count+'</span></b><br>';
-            var persentase      = getPercentGiziBaik(pos.balita_count, pos.total_gizi_baik_count);
+            var totalBalita     = '<b>Total Balita: '+pos.balita_count+'</b><br>';
+            var totalGiziBaik   = '<b>Gizi Baik: <span style="color:green">'+pos.gizi_baik_count+'</span></b><br>';
+            var totalGiziBuruk  = '<b>Gizi Buruk: <span style="color:red">'+pos.gizi_buruk_count+'</span></b><br>';
+            var totalGiziBuruk  = '<b>Belum Diklasifikasi: <span style="color:grey">'+pos.belum_klasifikasi_count+'</span></b><br>';
+            var persentase      = getPercentGiziBaik(pos.balita_count, pos.gizi_baik_count);
             var persen          = '<b>Persentase: '+persentase+'%</b>';
             onecircle.setStyle({ color: getColor(persentase) });
+            // console.log(persentase);
             
             onecircle.bindPopup(posyandu+totalBalita+totalGiziBaik+totalGiziBuruk+persen);
             onecircle.bindTooltip(persentase+' %', {
@@ -123,7 +119,7 @@
 
         function getPercentGiziBaik(totalBalita, totalGiziBaik){
             if(totalBalita != 0 && totalGiziBaik != 0) {
-                return (totalBalita / totalGiziBaik) * 100;
+                return ((totalGiziBaik / totalBalita)*100).toFixed(2);
             } else {
                 return 0;
             }

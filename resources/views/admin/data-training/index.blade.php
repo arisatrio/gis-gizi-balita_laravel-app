@@ -27,10 +27,7 @@
                         <th>Umur (Bulan)</th>
                         <th>Jenis Kelamin (JK)</th>
                         <th>Berat Badan (BB)</th>
-                        <th>Tinggi Badan (TB)</th>
-                        <th>Lingkar Kepala (LK)</th>
-                        <th>Lingkar Dada (LD)</th>
-                        <th>Status</th>
+                        <th>Status (BB/U)</th>
                     @endslot
                 </x-datatables>
             </div>
@@ -56,15 +53,12 @@
             {data: 'umur', name: 'umur'},
             {data: 'jk', name: 'jk'},
             {data: 'bb', name: 'bb'},
-            {data: 'tb', name: 'tb'},
-            {data: 'lk', name: 'lk'},
-            {data: 'ld', name: 'ld'},
             {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, seacrhable: false}
         ],
         columnDefs: [
             {
-                "targets": 8,
+                "targets": 5,
                 "className": "text-center",
             },
         ]

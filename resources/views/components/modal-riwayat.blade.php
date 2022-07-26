@@ -53,20 +53,19 @@
                     </tr>
                     <tr>
                         <th class="bg-light" style="width: 50%;">Total Check Up</th>
-                        <td><span class="badge badge-success">{{ $balita->checkUp->count() }}</span></td>
+                        <td><span class="badge badge-dark">{{ $balita->checkUp->count() }}</span></td>
                     </tr>
                     <tr>
-                        <th class="bg-light" style="width: 50%;">Status Gizi</th>
+                        <th class="bg-light" style="width: 50%;">Status Gizi (BB/U)</th>
                         <td>
-                            @if($balita->statusGizi)
-                                @if($balita->statusGizi->status === 1)
-                                    <span class="badge badge-success">Gizi Baik</span></td>
-                                @else
-                                    <span class="badge badge-danger">Gizi Buruk</span></td>
-                                @endif
-                            @else 
-                                <span class="badge badge-dark">Belum diklasifikasi</span></td>
+                            @if($balita->status === 1)
+                                <span class="badge badge-success">Gizi Baik</span>
+                            @elseif($balita->status === 0)
+                                <span class="badge badge-danger">Gizi Buruk</span>
+                            @else
+                                <span class="badge badge-dark">Belum Diklasifikasi</span>
                             @endif
+                        </td>
                     </tr>
                 </table>
             </div>

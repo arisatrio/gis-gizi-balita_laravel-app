@@ -36,18 +36,19 @@ class CheckUpController extends Controller
                 })
                 ->addColumn('status', function ($row) {
                     if($row->status === 1){
-                        return '<span class="badge badge-success">'.$row->status.'</span>';
+                        return '<span class="badge badge-success">Gizi Baik</span>';
                     } elseif($row->status === 0) {
-                        return '<span class="badge badge-danger">'.$row->status.'</span>';
+                        return '<span class="badge badge-danger">Gizi Buruk</span>';
                     } else {
                         return '<span class="badge badge-dark">Belum diklasifikasi</span>';
                     }
                 })
                 
                 ->addColumn('action', function ($row) {
+                    $klasifikasi = '<a href="'.route('admin.generate-klasifikasi', $row->id).'" class="btn btn-outline-success btn-sm mx-2 my-2">Klasifikasi Gizi</a> <br>'; 
                     $edit = '<a href="'.route('admin.data-check-up.edit', $row->id).'" class="btn btn-default btn-sm">EDIT</a>'; 
                     $delete = '<a href="javascript:void(0)" onclick="delete_checkup('.$row->id.')" class="btn btn-default btn-sm mx-2">HAPUS</a>';
-                    return $edit.$delete;
+                    return $klasifikasi.$edit.$delete;
                 })
                 ->rawColumns(['posyandu', 'status', 'action'])
                 ->make(true);

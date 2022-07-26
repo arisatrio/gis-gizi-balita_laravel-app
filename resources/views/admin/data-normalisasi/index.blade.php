@@ -29,9 +29,6 @@
                             <th>Umur Norm</th>
                             <th>JK Norm</th>
                             <th>BB Norm</th>
-                            <th>TB Norm</th>
-                            <th>LK Norm</th>
-                            <th>LD Norm</th>
                             <th>Status Norm</th>
                         </tr>
                     </thead>
@@ -66,9 +63,6 @@
             {data: 'umur_norm', name: 'umur_norm'},
             {data: 'jk_norm', name: 'jk_norm'},
             {data: 'bb_norm', name: 'bb_norm'},
-            {data: 'tb_norm', name: 'tb_norm'},
-            {data: 'lk_norm', name: 'lk_norm'},
-            {data: 'ld_norm', name: 'ld_norm'},
             {data: 'status_norm', name: 'status_norm'},
         ],
     });

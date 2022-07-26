@@ -11,9 +11,6 @@ class DataTraining extends Model
         'umur',
         'jk',
         'bb',
-        'tb',
-        'lk',
-        'ld',
         'status'
     ];
 
